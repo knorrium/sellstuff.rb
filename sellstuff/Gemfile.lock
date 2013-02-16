@@ -14,6 +14,9 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     builder (3.0.4)
+    carrierwave (0.8.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
     diff-lcs (1.1.3)
     erubis (2.7.0)
     http_router (0.10.2)
@@ -89,6 +92,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  carrierwave
   erubis (~> 2.7.0)
   padrino (= 0.10.7)
   rack-test
