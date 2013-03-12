@@ -15,8 +15,8 @@
 </div>
 <div class="group">
   <%= f.label :category_id %><%= f.error_message_on :category_id %>
-  <%= f.text_field :category_id, :class => :text_field %>
-  <span class="description">Ex: a simple text</span>
+  <%= f.select(:category_id, :collection => Category.all, :fields => [:name, :id])%>
+  <span class="description">Ex: Home</span>
 </div>
 <div class="group">
   <%= f.label :permalink %><%= f.error_message_on :permalink %>
