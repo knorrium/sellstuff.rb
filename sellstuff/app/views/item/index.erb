@@ -1,0 +1,20 @@
+<!--
+<div class="jumbotron">
+        <h1>Vendendo de tudo!</h1>
+        <p class="lead">Estamos vendendo uma porrada de coisas! Veja as fotos abaixo e entre em contato para comprar!
+          <br><br>
+          CEP para cálculo do frete: 04522-033
+        </p>
+      </div>
+-->
+<div class="container">
+  <ul class="thumbnails">
+    <% @items.each do |item| %>
+    <li class="span2">
+      <a href="/items/show/<%= item.permalink %>" class="thumbnail">
+        <img data-src="http://placehold.it/640x480" src="<%= item.picture %>" alt="<%= item.title %>">
+      </a>
+    </li>
+    <% end %>
+</ul>
+</div>

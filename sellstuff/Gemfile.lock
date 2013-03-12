@@ -41,6 +41,7 @@ GEM
       padrino-helpers (= 0.10.7)
     padrino-cache (0.10.7)
       padrino-core (= 0.10.7)
+    padrino-contrib (0.1.13)
     padrino-core (0.10.7)
       activesupport (~> 3.2.0)
       http_router (~> 0.10.2)
@@ -95,6 +96,7 @@ DEPENDENCIES
   carrierwave
   erubis (~> 2.7.0)
   padrino (= 0.10.7)
+  padrino-contrib
   rack-test
   rake
   rspec

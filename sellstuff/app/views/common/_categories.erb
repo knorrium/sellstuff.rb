@@ -1,0 +1,15 @@
+<div class="masthead">
+        <h3 class="muted">Torra-torra da alegria - Entrega em mãos nos bairros Vila Olímpia e Moema</h3>
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="container">
+              <ul class="nav">
+                <% @categories.each do |category| %>
+                <!-- <li class="active"><a href="#">Tudo</a></li> -->
+                <li><a href="/items/<%= category.permalink %>"><%= category.name %></a></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div><!-- /.navbar -->
+      </div>
