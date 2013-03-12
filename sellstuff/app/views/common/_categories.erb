@@ -4,6 +4,7 @@
           <div class="navbar-inner">
             <div class="container">
               <ul class="nav">
+                <li><a href="/items">Tudo</a></li>
                 <% @categories.each do |category| %>
                 <!-- <li class="active"><a href="#">Tudo</a></li> -->
                 <li><a href="/items/<%= category.permalink %>"><%= category.name %></a></li>

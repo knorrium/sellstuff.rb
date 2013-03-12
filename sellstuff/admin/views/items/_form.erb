@@ -1,0 +1,35 @@
+<div class="group">
+  <%= f.label :title %><%= f.error_message_on :title %>
+  <%= f.text_field :title, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :description %><%= f.error_message_on :description %>
+  <%= f.text_field :description, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :picture %><%= f.error_message_on :picture %>
+  <%= f.text_field :picture, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :category_id %><%= f.error_message_on :category_id %>
+  <%= f.text_field :category_id, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :permalink %><%= f.error_message_on :permalink %>
+  <%= f.text_field :permalink, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :price %><%= f.error_message_on :price %>
+  <%= f.text_field :price, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+
+<div class="group navform wat-cf">
+  <%= f.submit pat(:save), :class => :button %>
+  <%= f.submit pat(:cancel), :onclick => "window.location='#{url(:items, :index)}';return false", :class => :button %>
+</div>

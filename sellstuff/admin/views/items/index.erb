@@ -1,0 +1,48 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to pat(:list), url(:items, :index) %></li>
+      <li><%= link_to pat(:new), url(:items, :new) %></li>
+    </ul>
+  </div>
+  <div class="content">
+    <h2 class="title"><%= pat(:all) %> <% mt(:items) %></h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th class="first"><%= mat(:item, :id) %></th>
+          <th><%= mat(:item, :title) %></th>
+          <th><%= mat(:item, :description) %></th>
+          <th><%= mat(:item, :created_at) %></th>
+          <th><%= mat(:item, :updated_at) %></th>
+          <th><%= mat(:item, :picture) %></th>
+          <th><%= mat(:item, :category_id) %></th>
+          <th><%= mat(:item, :permalink) %></th>
+          <th><%= mat(:item, :price) %></th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @items.each do |item| %>
+        <tr>
+          <td class="first"><%= item.id %></td>
+          <td><%= item.title %></td>
+          <td><%= item.description %></td>
+          <td><%= item.created_at %></td>
+          <td><%= item.updated_at %></td>
+          <td><%= item.picture %></td>
+          <td><%= item.category_id %></td>
+          <td><%= item.permalink %></td>
+          <td><%= item.price %></td>
+          <td class="last">
+            <%= button_to pat(:edit), url(:items, :edit, :id => item.id), :method => :get, :class => :button_to %> |
+            <%= button_to pat(:delete), url(:items, :destroy, :id => item.id), :method => :delete, :class => :button_to, :onsubmit => "return confirm('#{pat(:confirm)}')" %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<% content_for :sidebar, partial("base/sidebar") %>
