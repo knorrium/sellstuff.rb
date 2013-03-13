@@ -1,12 +1,12 @@
 class Uploader < CarrierWave::Uploader::Base
-
+  include CarrierWave::ImageSorcery
   ##
   # Image manipulator library:
   #
   # include CarrierWave::RMagick
   # include CarrierWave::ImageScience
   # include CarrierWave::MiniMagick
-
+  process :resize_to_fit => [1024, 768]
   ##
   # Storage type
   #
