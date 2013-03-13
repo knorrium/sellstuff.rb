@@ -5,5 +5,5 @@ bin/*
 vendor/gems/*
 !vendor/gems/cache/
 .sass-cache/*
-**/public/images/uploads/*
+public/images/uploads/*
 db/*.db
