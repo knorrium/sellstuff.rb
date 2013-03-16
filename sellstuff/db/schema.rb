@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 12) do
+ActiveRecord::Schema.define(:version => 13) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 12) do
     t.integer  "category_id"
     t.string   "permalink"
     t.string   "price"
+    t.integer  "status_id"
   end
 
   create_table "uploads", :force => true do |t|
