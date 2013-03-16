@@ -2,7 +2,7 @@ Sellstuff.controllers :item do
 
   get :index, :map => '/items' do
     @categories = Category.all
-    @items = Item.all
+    @items = Item.find(:all, :order => "status_id ASC")
     if @items.size == 0
     	render 'item/empty'
     else
