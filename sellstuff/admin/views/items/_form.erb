@@ -10,7 +10,7 @@
 </div>
 <div class="group">
   <%= f.label :picture %><%= f.error_message_on :picture %>
-  <%= f.text_field :picture, :class => :text_field %>
+  <%= f.file_field :picture, :class => :long %>
   <span class="description">Ex: a simple text</span>
 </div>
 <div class="group">
@@ -27,11 +27,6 @@
   <%= f.label :price %><%= f.error_message_on :price %>
   <%= f.text_field :price, :class => :text_field %>
   <span class="description">Ex: a simple text</span>
-</div>
-<div class="group">
-  <%= f.label :status_id %><%= f.error_message_on :status_id %>
-  <%= f.select(:status_id, :collection => ItemStatus.all, :fields => [:name, :id])%>
-  <span class="description">Ex: Home</span>
 </div>
 <div class="group">
   <%= f.label :status_id %><%= f.error_message_on :status_id %>

@@ -13,6 +13,15 @@ Admin.controllers :items do
   post :create do
     @item = Item.new(params[:item])
     if @item.save
+      if params[:item][:image] then
+        upload = Upload.create(:file => params[:item][:image], :item_id => @item.id)
+        if upload.valid? then
+          @item.picture = upload.file
+          @item.save
+        else
+          flash[:error] = 'Unable to create Item!'
+        end
+      end
       flash[:notice] = 'Item was successfully created.'
       redirect url(:items, :edit, :id => @item.id)
     else
