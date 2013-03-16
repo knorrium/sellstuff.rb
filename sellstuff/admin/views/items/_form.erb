@@ -28,7 +28,11 @@
   <%= f.text_field :price, :class => :text_field %>
   <span class="description">Ex: a simple text</span>
 </div>
-
+<div class="group">
+  <%= f.label :status_id %><%= f.error_message_on :status_id %>
+  <%= f.select(:status_id, :collection => ItemStatus.all, :fields => [:name, :id])%>
+  <span class="description">Ex: Home</span>
+</div>
 <div class="group navform wat-cf">
   <%= f.submit pat(:save), :class => :button %>
   <%= f.submit pat(:cancel), :onclick => "window.location='#{url(:items, :index)}';return false", :class => :button %>

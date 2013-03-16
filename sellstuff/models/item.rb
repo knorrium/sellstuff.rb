@@ -3,6 +3,8 @@ class Item < ActiveRecord::Base
 
 	has_permalink :title
 
+	has_one :item_status
+
 	validates_presence_of :title
 	validates_presence_of :description
 

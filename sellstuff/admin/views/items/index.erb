@@ -13,8 +13,7 @@
           <th class="first"><%= mat(:item, :id) %></th>
           <th><%= mat(:item, :title) %></th>
           <th><%= mat(:item, :description) %></th>
-          <th><%= mat(:item, :created_at) %></th>
-          <th><%= mat(:item, :updated_at) %></th>
+          <th><%= mat(:item, :status_id) %></th>
           <th><%= mat(:item, :picture) %></th>
           <th><%= mat(:item, :category_id) %></th>
           <th><%= mat(:item, :permalink) %></th>
@@ -26,10 +25,9 @@
           <td class="first"><%= item.id %></td>
           <td><%= item.title %></td>
           <td><%= item.description %></td>
-          <td><%= item.created_at %></td>
-          <td><%= item.updated_at %></td>
+          <td><%= ItemStatus.find_by_id(item.status_id).name %></td>
           <td><%= item.picture %></td>
-          <td><%= item.category_id %></td>
+          <td><%= Category.find_by_id(item.category_id).name %></td>
           <td><%= item.permalink %></td>
           <td><%= item.price %></td>
           <td class="last">
