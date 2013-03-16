@@ -27,7 +27,8 @@ Sellstuff.controllers :item do
   end
 
   get :item_new, :map => '/item/new' do
-  	@categories = Category.all
+    @statuses = ItemStatus.all
+    @categories = Category.all
     # @uploads = Upload.all
     render 'item/new'
   end
