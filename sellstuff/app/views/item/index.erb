@@ -12,7 +12,7 @@
     <% @items.each do |item| %>
     <li class="span2">
       <a href="/items/show/<%= item.permalink %>" class="thumbnail">
-        <img src=<%= item.picture.thumbnail == nil ? "http://placehold.it/640x480" : item.picture.thumbnail %> alt="<%= item.title %>">
+        <img src=<%= item.picture.thumbnail.length == 0 ? '"http://placehold.it/640x480"' : item.picture.thumbnail %> alt="<%= item.title %>">
       </a>
     </li>
     <% end %>
