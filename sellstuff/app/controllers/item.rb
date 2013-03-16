@@ -35,7 +35,7 @@ Sellstuff.controllers :item do
 
   post :item_upload, :map => '/item/new' do
 
-    item = Item.create(:title => params[:title], :description => params[:description], :category_id => params[:category], :price => params[:price])
+    item = Item.create(:title => params[:title], :description => params[:description], :category_id => params[:category], :price => params[:price], :status_id => params[:status_id])
 
     if item.valid? then
       if params[:image] then
