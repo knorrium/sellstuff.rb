@@ -23,7 +23,7 @@ Admin.controllers :items do
         end
       end
       flash[:notice] = 'Item was successfully created.'
-      redirect url(:items, :edit, :id => @item.id)
+      redirect url(:items, :new)
     else
       render 'items/new'
     end
