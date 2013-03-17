@@ -32,3 +32,4 @@ gem 'padrino', '0.10.7'
 # end
 
 gem 'carrierwave-imagesorcery'
+gem 'pry-nav'
