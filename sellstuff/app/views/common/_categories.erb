@@ -7,7 +7,7 @@
             <div class="container">
               <ul class="nav">
                 <li class ="brand<%= @request.env["PATH_INFO"] == "/items" ? ' active' : "" %>"><a href="/items">Tudo</a></li>
-                <% @categories.each do |category| %>
+                <% if @categories then @categories.each do |category| %>
                 <% count+=1 %>
                 <% if count % 6 == 0 %>
                 <!-- repeated navbar -->
@@ -20,11 +20,11 @@
             <div class="container">
               <ul class="nav">
                 <% end %>
-                <li <%= category.permalink == @request.env["router.params"][:permalink] ? 'class="active"' : "" %>><a href="/items/<%= category.permalink %>"><%= category.name %></a></li>
+                <li <%= category.permalink == @request.env["router.params"][:permalink] ? 'class=active' : "" %>><a href="/items/<%= category.permalink %>"><%= category.name %></a></li>
                 <% end %>
                 <% if count % 6 == 0 %>
                 </ul>
-                <% end %>
+                <% end end %>
               </ul>
             </div>
           </div>
