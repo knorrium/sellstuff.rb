@@ -10,6 +10,18 @@ password  = shell.ask "Tell me the password to use:"
 
 shell.say ""
 
+# Creates the default item statuses
+ItemStatus.create(:name => "Disponivel!")
+ItemStatus.create(:name => "Reservado")
+ItemStatus.create(:name => "Vendido!")
+
+# Creates the default categories
+Category.create(:name => "Casa/Moveis")
+Category.create(:name => "Eletronicos")
+Category.create(:name => "Livros")
+Category.create(:name => "Jogos")
+Category.create(:name => "Outros")
+
 account = Account.create(:email => email, :name => "Foo", :surname => "Bar", :password => password, :password_confirmation => password, :role => "admin")
 
 if account.valid?
