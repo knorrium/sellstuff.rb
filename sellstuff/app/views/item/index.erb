@@ -1,4 +1,6 @@
 <div class="container">
+  <%= link_to "Clique aqui para ver a lista sem fotos", (url_for(:item, :index_text) + "/" + @request.env["router.params"][:permalink].to_s) %>
+  <br><br>
   <ul class="thumbnails">
     <% @items.each do |item| %>
     <li class="span2">
