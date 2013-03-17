@@ -46,32 +46,4 @@ Sellstuff.controllers :item do
 	render 'item/show'
   end
 
-  get :item_new, :map => '/item/new' do
-    @statuses = ItemStatus.all
-    @categories = Category.all
-    # @uploads = Upload.all
-    render 'item/new'
-  end
-
-  post :item_upload, :map => '/item/new' do
-
-    item = Item.create(:title => params[:title], :description => params[:description], :category_id => params[:category], :price => params[:price], :status_id => params[:status_id])
-
-    if item.valid? then
-      if params[:image] then
-        upload = Upload.create(:file => params[:image], :item_id => item.id)
-        if upload.valid? then
-          item.picture = upload.file
-          item.save
-        end
-      end
-
-      redirect to('/items')
-    else
-      @categories = Category.all
-      @errors = item.errors
-      render 'item/new_error'
-    end
-  end
-
 end
