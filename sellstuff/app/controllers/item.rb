@@ -22,7 +22,7 @@ Sellstuff.controllers :item do
 
   get :category_items_text, :map => '/items-text/:permalink' do
     @categories = Category.all
-    @items = Item.find_all_by_category_id(Category.find_by_permalink(params[:permalink]).id)
+    @items = Item.find_all_by_category_id(Category.find_by_permalink!(params[:permalink]).id)
     if @items.size == 0
       render 'item/empty'
     else
@@ -32,7 +32,7 @@ Sellstuff.controllers :item do
 
   get :category_items, :map => '/items/:permalink' do
     @categories = Category.all
-    @items = Item.find_all_by_category_id(Category.find_by_permalink(params[:permalink]).id)
+    @items = Item.find_all_by_category_id(Category.find_by_permalink!(params[:permalink]).id)
     if @items.size == 0
     	render 'item/empty'
     else
@@ -41,9 +41,9 @@ Sellstuff.controllers :item do
   end
 
   get :item_details, :map => '/items/show/:permalink' do
-  	@categories = Category.all
-    @item = Item.find_by_permalink(params[:permalink])
-	render 'item/show'
+    @categories = Category.all
+    @item = Item.find_by_permalink!(params[:permalink])
+    render 'item/show'
   end
 
 end

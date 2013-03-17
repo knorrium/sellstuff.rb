@@ -47,14 +47,22 @@ class Sellstuff < Padrino::Application
   #
 
   ##
-  # You can manage errors like:
+  # Error management
   #
-  #   error 404 do
-  #     render 'errors/404'
-  #   end
-  #
-  #   error 505 do
-  #     render 'errors/505'
-  #   end
-  #
+  error ActiveRecord::RecordNotFound do
+    render('errors/404')
+  end
+
+  error 404 do
+    render('errors/404')
+  end
+
+  error 500 do
+    render('errors/500')
+  end
+
+  error 505 do
+    render('errors/505')
+  end
+
 end
