@@ -38,4 +38,5 @@ gem 'padrino', :git => 'git://github.com/padrino/padrino-framework.git'
 
 gem 'carrierwave-imagesorcery'
 gem 'pry-nav'
+gem 'uuid'
 gem 'sinatra', :github => "sinatra/sinatra"
