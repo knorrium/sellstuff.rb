@@ -10,7 +10,13 @@
     }
   </style>
   <div class="container">
-    <% @items = Marshal::load(session["items"]) %>
+    <%
+      begin
+        @items = Marshal::load(session["items"])
+      rescue
+        @items = Item.all
+      end
+    %>
     <% idx = @items.find_index {|item| item.permalink == params[:permalink]} %>
     <% idx_next = @items.find_index {|item| item.permalink == params['next'] } %>
     <% idx_prev = @items.find_index {|item| item.permalink == params['prev'] } %>
