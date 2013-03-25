@@ -1,11 +1,13 @@
 <div class="container">
   <%= link_to "Clique aqui para ver a lista sem fotos", (url_for(:item, :index_text) + "/" + @request.env["router.params"][:permalink].to_s) %>
-  <br><br>
+  <br>
+  <br>
   <ul class="thumbnails">
+    <% count = 0 %>
     <% @items.each do |item| %>
     <li class="span2">
         <% if item.status_id && item.status_id < 3 then %>
-          <a href="/items/show/<%= item.permalink %>" class="thumbnail">
+          <a href="/items/show/<%= item.permalink %>?prev=<%= @items[count-1].permalink %>&next=<%= @items[count+1].nil? ? @items[0].permalink : @items[count+1].permalink %>" class="thumbnail">
           <legend><%= ItemStatus.find_by_id(item.status_id).name %></legend>
           <img src="<%= item.picture.thumbnail.length == 0 ? "http://placehold.it/640x480" : item.picture.thumbnail %>" alt="<%= item.title %>">
           <% else %>
@@ -14,6 +16,7 @@
         <% end %>
       </a>
     </li>
+    <% count+=1 %>
     <% end %>
   </ul>
 </div>

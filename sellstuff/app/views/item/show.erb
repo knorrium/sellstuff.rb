@@ -9,6 +9,21 @@
       float: none; /* this is the part that makes it work */
     }
   </style>
+  <div class="container">
+    <% @items = Marshal::load(session["items"]) %>
+    <% idx = @items.find_index {|item| item.permalink == params[:permalink]} %>
+    <% idx_next = @items.find_index {|item| item.permalink == params['next'] } %>
+    <% idx_prev = @items.find_index {|item| item.permalink == params['prev'] } %>
+    <ul class="pager">
+      <li class="previous">
+        <a href="<%= params['prev']%>?prev=<%= @items[idx_prev-1].permalink %>&next=<%= @items[idx].permalink %>">&larr; Anterior</a>
+      </li>
+      <li class="next">
+        <a href="<%= params['next']%>?prev=<%= @items[idx].permalink %>&next=<%= @items[idx_next+1].nil? ? @items.first.permalink :
+        @items[idx_next+1].permalink %>">Pr&oacute;ximo &rarr;</a>
+      </li>
+    </ul>
+  </div>
   <div class="row">
     <ul class="thumbnails">
       <li class="span10">
@@ -19,6 +34,17 @@
             <p><%= @item.description %></p>
           </div>
         </div>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <ul class="pager">
+      <li class="previous">
+        <a href="<%= params['prev']%>?prev=<%= @items[idx_prev-1].permalink %>&next=<%= @items[idx].permalink %>">&larr; Anterior</a>
+      </li>
+      <li class="next">
+        <a href="<%= params['next']%>?prev=<%= @items[idx].permalink %>&next=<%= @items[idx_next+1].nil? ? @items.first.permalink :
+        @items[idx_next+1].permalink %>">Pr&oacute;ximo &rarr;</a>
       </li>
     </ul>
   </div>
