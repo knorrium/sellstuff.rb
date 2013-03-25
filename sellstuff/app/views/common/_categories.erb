@@ -5,7 +5,7 @@
       <ul class="nav">
         <% if @categories then @categories.each do |category| %>
         <% count+=1 %>
-        <% if count % 6 == 0 %>
+        <% if count % 7 == 0 %>
         <!-- repeated navbar -->
       </ul>
     </div>
@@ -18,7 +18,7 @@
         <% end %>
         <li <%= category.permalink == @request.env["router.params"][:permalink] ? 'class=active' : "" %>><a href="/items/<%= category.permalink %>"><%= category.name %></a></li>
         <% end %>
-        <% if count % 6 == 0 %>
+        <% if count % 7 == 0 %>
           </ul>
         <% end end %>
       </ul>
