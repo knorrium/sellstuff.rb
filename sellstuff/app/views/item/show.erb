@@ -20,13 +20,16 @@
     <% idx = @items.find_index {|item| item.permalink == params[:permalink]} %>
     <% idx_next = @items.find_index {|item| item.permalink == params['next'] } %>
     <% idx_prev = @items.find_index {|item| item.permalink == params['prev'] } %>
+    <% prev_prev_link = @items[idx_prev-1].permalink %>
+    <% prev_next_link = @items[idx].permalink %>
+    <% next_prev_link = @items[idx].permalink %>
+    <% next_next_link = @items[idx_next+1].nil? ? @items.first.permalink : @items[idx_next+1].permalink %>
     <ul class="pager">
       <li class="previous">
-        <a href="<%= params['prev']%>?prev=<%= @items[idx_prev-1].permalink %>&next=<%= @items[idx].permalink %>">&larr; Anterior</a>
+        <a href="<%= params['prev']%>?prev=<%= prev_prev_link %>&next=<%= prev_next_link %>">&larr; Anterior</a>
       </li>
       <li class="next">
-        <a href="<%= params['next']%>?prev=<%= @items[idx].permalink %>&next=<%= @items[idx_next+1].nil? ? @items.first.permalink :
-        @items[idx_next+1].permalink %>">Pr&oacute;ximo &rarr;</a>
+        <a href="<%= params['next']%>?prev=<%= next_prev_link %>&next=<%= next_next_link %>">Pr&oacute;ximo &rarr;</a>
       </li>
     </ul>
   </div>
@@ -46,11 +49,10 @@
   <div class="container">
     <ul class="pager">
       <li class="previous">
-        <a href="<%= params['prev']%>?prev=<%= @items[idx_prev-1].permalink %>&next=<%= @items[idx].permalink %>">&larr; Anterior</a>
+        <a href="<%= params['prev']%>?prev=<%= prev_prev_link %>&next=<%= prev_next_link %>">&larr; Anterior</a>
       </li>
       <li class="next">
-        <a href="<%= params['next']%>?prev=<%= @items[idx].permalink %>&next=<%= @items[idx_next+1].nil? ? @items.first.permalink :
-        @items[idx_next+1].permalink %>">Pr&oacute;ximo &rarr;</a>
+        <a href="<%= params['next']%>?prev=<%= next_prev_link %>&next=<%= next_next_link %>">Pr&oacute;ximo &rarr;</a>
       </li>
     </ul>
   </div>
