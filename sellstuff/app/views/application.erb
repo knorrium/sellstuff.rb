@@ -78,10 +78,16 @@
 
   </head>
   <body>
+    <div class="container">
+      <%= partial "common/header" %>
+    </div>
   	<div class="container">
-		<%= partial "common/categories" %>
-	</div>
-	<%= yield %>
-  <%= partial "common/footer" %>
+		  <%= partial "common/categories" %>
+    </div>
+    <%= yield %>
+    <div class="container">
+      <%= partial "common/categories" %>
+    </div>
+    <%= partial "common/footer" %>
   </body>
 </html>

@@ -1,33 +1,27 @@
-<div class="row">
-  <div class="masthead">
-    <h1><a href="/">Bazar dos Kuhn<img src="/images/alles-muss-raus.png"></a></h1>
-    <h4 class="muted">Itens localizados nos bairros Vila Olímpia e Moema</h4>
-    <% count = 0 %>
-    <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-          <ul class="nav">
-            <li class ="brand<%= @request.env["PATH_INFO"] == "/items" ? ' active' : "" %>"><a href="/items">Tudo</a></li>
-            <% if @categories then @categories.each do |category| %>
-            <% count+=1 %>
-            <% if count % 6 == 0 %>
-            <!-- repeated navbar -->
-          </ul>
-        </div>
-      </div>
-    </div><!-- /.navbar -->
-    <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-          <ul class="nav">
-            <% end %>
-            <li <%= category.permalink == @request.env["router.params"][:permalink] ? 'class=active' : "" %>><a href="/items/<%= category.permalink %>"><%= category.name %></a></li>
-            <% end %>
-            <% if count % 6 == 0 %>
-          </ul>
-          <% end end %>
-        </div>
-      </div>
-    </div><!-- /.navbar -->
+<% count = 0 %>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <ul class="nav">
+        <li class ="brand<%= @request.env["PATH_INFO"] == "/items" ? ' active' : "" %>"><a href="/items">Tudo</a></li>
+        <% if @categories then @categories.each do |category| %>
+        <% count+=1 %>
+        <% if count % 6 == 0 %>
+        <!-- repeated navbar -->
+      </ul>
+    </div>
   </div>
-</div>
+</div><!-- /.navbar -->
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <ul class="nav">
+        <% end %>
+        <li <%= category.permalink == @request.env["router.params"][:permalink] ? 'class=active' : "" %>><a href="/items/<%= category.permalink %>"><%= category.name %></a></li>
+        <% end %>
+        <% if count % 6 == 0 %>
+      </ul>
+      <% end end %>
+    </div>
+  </div>
+</div><!-- /.navbar -->
