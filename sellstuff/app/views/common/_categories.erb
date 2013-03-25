@@ -3,7 +3,6 @@
   <div class="navbar-inner">
     <div class="container">
       <ul class="nav">
-        <li class ="brand<%= @request.env["PATH_INFO"] == "/items" ? ' active' : "" %>"><a href="/items">Tudo</a></li>
         <% if @categories then @categories.each do |category| %>
         <% count+=1 %>
         <% if count % 6 == 0 %>

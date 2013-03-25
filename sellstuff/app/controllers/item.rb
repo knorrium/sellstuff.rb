@@ -1,13 +1,7 @@
 Sellstuff.controllers :item do
 
   get :index, :map => '/items' do
-    @categories = Category.all
-    @items = Item.find(:all, :order => "status_id, upper(title) ASC")
-    if @items.size == 0
-    	render 'item/empty'
-    else
-    	render 'item/index'
-    end
+    redirect to('/items/' + Category.first.permalink)
   end
 
   get :index_text, :map => '/items-text' do
