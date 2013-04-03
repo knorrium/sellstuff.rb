@@ -11,8 +11,10 @@
           <legend><%= ItemStatus.find_by_id(item.status_id).name %></legend>
           <img src="<%= item.picture.thumbnail.length == 0 ? "http://placehold.it/640x480" : item.picture.thumbnail %>" alt="<%= item.title %>">
           <% else %>
-          <legend><%= ItemStatus.find_by_id(item.status_id).name %></legend>
-          <img src=<%= item.picture.thumbnail.length == 0 ? "http://placehold.it/640x480" : item.picture.thumbnail %>>
+          <div class="thumbnail">
+            <legend><%= ItemStatus.find_by_id(item.status_id).name %></legend>
+            <img src=<%= item.picture.thumbnail.length == 0 ? "http://placehold.it/640x480" : item.picture.thumbnail %>>
+          </div>
         <% end %>
       </a>
     </li>
