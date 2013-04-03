@@ -9,7 +9,7 @@
         <% if item.status_id && item.status_id < 3 then %>
           <a href="/items/show/<%= item.permalink %>?prev=<%= @items[count-1].permalink %>&next=<%= @items[count+1].nil? ? @items[0].permalink : @items[count+1].permalink %>" class="thumbnail">
           <legend><%= ItemStatus.find_by_id(item.status_id).name %></legend>
-          <img src="<%= item.picture.thumbnail.length == 0 ? "http://placehold.it/640x480" : item.picture.thumbnail %>" alt="<%= item.title %>">
+          <img src="<%= item.picture.thumbnail.length == 0 ? "http://placehold.it/640x480" : item.picture.thumbnail %>" alt="<%= item.title %>" title="<%= item.title %>">
           <% else %>
           <div class="thumbnail">
             <legend><%= ItemStatus.find_by_id(item.status_id).name %></legend>
