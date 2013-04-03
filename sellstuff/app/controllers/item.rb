@@ -16,7 +16,8 @@ Sellstuff.controllers :item do
 
   get :category_items_text, :map => '/items-text/:permalink' do
     @categories = Category.all
-    @items = Item.find_all_by_category_id(Category.find_by_permalink!(params[:permalink]).id, :order => "upper(title) ASC")
+    @items = Item.find_all_by_category_id(Category.find_by_permalink!(params[:permalink]).id, :order => "status_id ASC, upper(title) ASC")
+    session["items"] = Marshal::dump(@items)
     if @items.size == 0
       render 'item/empty'
     else

@@ -2,14 +2,15 @@
     <%= link_to "Clique aqui para ver a lista com fotos", (url_for(:item, :index) + "/" + @request.env["router.params"][:permalink].to_s) %>
   <br><br>
   <ul>
+    <% count = 0 %>
     <% @items.each do |item| %>
-    <li>
         <% if item.status_id && item.status_id < 3 then %>
-          <a href="/items/show/<%= item.permalink %>">
+        <li>
+          <a href="/items/show/<%= item.permalink %>?prev=<%= @items[count-1].permalink %>&next=<%= @items[count+1].nil? ? @items[0].permalink : @items[count+1].permalink %>">
             <%= item.title %> - R$<%= item.price %> - <%= ItemStatus.find_by_id(item.status_id).name %>
           </a>
+        </li>
         <% end %>
-    </li>
     <% end %>
   </ul>
 </div>
