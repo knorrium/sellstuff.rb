@@ -2,15 +2,21 @@
     <%= link_to "Clique aqui para ver a lista com fotos", (url_for(:item, :index) + "/" + @request.env["router.params"][:permalink].to_s) %>
   <br><br>
   <ul>
-    <% count = 0 %>
     <% @items.each do |item| %>
         <% if item.status_id && item.status_id < 3 then %>
+        <% item_idx  = @items.find_index { |search| search.permalink == item.permalink } %>
+        <% prev_link = (@items[item_idx-1].nil? or @items[item_idx-1].status_id == 3) ? @items[@items.rindex { |x| x.status_id < 3 }].permalink : @items[item_idx-1].permalink %>
+        <% next_link = (@items[item_idx+1].nil? or @items[item_idx+1].status_id == 3) ? @items[@items.index { |x| x.status_id < 3 }].permalink : @items[item_idx+1].permalink %>
         <li>
-          <a href="/items/show/<%= item.permalink %>?prev=<%= @items[count-1].permalink %>&next=<%= @items[count+1].nil? ? @items[0].permalink : @items[count+1].permalink %>">
+          <a href="/items/show/<%= item.permalink %>?prev=<%= prev_link %>&next=<%= next_link %>">
             <%= item.title %> - R$<%= item.price %> - <%= ItemStatus.find_by_id(item.status_id).name %>
           </a>
         </li>
-        <% end %>
+        <% else %>
+        <li>
+          <%= item.title %> - R$<%= item.price %> - <%= ItemStatus.find_by_id(item.status_id).name %>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 </div>
