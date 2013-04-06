@@ -6156,3 +6156,9 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+
+.sold {
+  zoom: 1;
+  filter: alpha(opacity=40);
+  opacity: 0.4;
+}
