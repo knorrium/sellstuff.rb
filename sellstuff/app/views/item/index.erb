@@ -6,10 +6,7 @@
     <% @items.each do |item| %>
       <li class="span2">
           <% if item.status_id && item.status_id < 3 then %>
-          <% item_idx  = @items.find_index { |search| search.permalink == item.permalink } %>
-          <% prev_link = (@items[item_idx-1].nil? or @items[item_idx-1].status_id == 3) ? @items[@items.rindex { |x| x.status_id < 3 }].permalink : @items[item_idx-1].permalink %>
-          <% next_link = (@items[item_idx+1].nil? or @items[item_idx+1].status_id == 3) ? @items[@items.index { |x| x.status_id < 3 }].permalink : @items[item_idx+1].permalink %>
-            <a href="/items/show/<%= item.permalink %>?prev=<%= prev_link %>&next=<%= next_link %>" class="thumbnail">
+            <a href="/items/show/<%= item.permalink %>" class="thumbnail">
             <legend><%= ItemStatus.find_by_id(item.status_id).name %></legend>
             <img src="<%= item.picture.thumbnail.length == 0 ? "http://placehold.it/640x480" : item.picture.thumbnail %>" alt="<%= item.title %>" title="<%= item.title %>">
             <% else %>

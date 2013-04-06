@@ -44,32 +44,20 @@ Sellstuff.controllers :item do
     @categories = Category.all
     @item = Item.find_by_permalink!(params[:permalink])
     @indexes = Hash.new
-    if params['prev'] && params['next'] && session['items']
-      @items = Marshal::load(session["items"])
-      idx_next = @items.find_index { |item| item.permalink == params['next'] }
-      idx_prev = @items.find_index { |item| item.permalink == params['prev'] }
-      prev = params['prev']
-      nxt = params['next']
-      idx = @items.find_index { |item| item.permalink == params[:permalink] }
-      prev_prev_link = @items[idx-1].permalink
-      prev_next_link = @items[idx].permalink
-      next_prev_link = @items[idx].permalink
-      next_next_link = (@items[idx_next+1].nil? or @items[idx_next+1].status_id == 3) ? @items[@items.index  { |x| x.status_id < 3 }].permalink : @items[idx_next+1].permalink
+    @item_category = @categories.find { |category| category.id == @item.category_id }
+    @items = Item.where("status_id < 3 and category_id = #{@item_category.id}")
+
+    if @items.size == 0
+      redirect to('/items')
     else
-      @items = Item.where("status_id < 3")
       idx = @items.find_index { |item| item.permalink == params[:permalink] }
       idx_next = idx+1
       idx_prev = idx-1
-      prev = (@items[idx_prev].nil? or @items[idx_prev].status_id == 3) ? @items[@items.rindex { |x| x.status_id < 3 }].permalink : @items[idx_prev].permalink
-      nxt  = (@items[idx_next].nil? or @items[idx_next].status_id == 3) ? @items[@items.index  { |x| x.status_id < 3 }].permalink : @items[idx_next].permalink
-      prev_prev_link = (@items[idx-2].nil? or @items[idx-2].status_id == 3) ? @items[@items.rindex { |x| x.status_id < 3 }].permalink : @items[idx-2].permalink
-      prev_next_link = @items[idx].permalink
-      next_prev_link = @items[idx].permalink
-      next_next_link = (@items[idx+2].nil? or @items[idx+2].status_id == 3) ? @items[@items.rindex { |x| x.status_id < 3 }].permalink : @items[idx+2].permalink
+      prev_item = (@items[idx_prev].nil? or @items[idx_prev].status_id == 3) ? @items[@items.rindex { |x| x.status_id < 3 }].permalink : @items[idx_prev].permalink
+      next_item  = (@items[idx_next].nil? or @items[idx_next].status_id == 3) ? @items[@items.index  { |x| x.status_id < 3 }].permalink : @items[idx_next].permalink
+      @indexes['full_prev_link'] = "/items/show/#{prev_item}"
+      @indexes['full_next_link'] = "/items/show/#{next_item}"
+      render 'item/show'
     end
-    @indexes['full_prev_link'] = "/items/show/#{prev}/?prev=#{prev_prev_link}&next=#{prev_next_link}"
-    @indexes['full_next_link'] = "/items/show/#{nxt}/?prev=#{next_prev_link}&next=#{next_next_link}"
-    render 'item/show'
   end
-
 end
