@@ -33,7 +33,7 @@ Sellstuff.controllers :item do
       @items = Item.find_all_by_category_id(@category.id, :order => "status_id ASC, upper(title) ASC")
       session["items"] = Marshal::dump(@items)
       if @items.size == 0
-        ender 'item/empty'
+        render 'item/empty'
       else
         render 'item/index'
       end
