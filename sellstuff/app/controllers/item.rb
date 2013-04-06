@@ -45,7 +45,7 @@ Sellstuff.controllers :item do
     @item = Item.find_by_permalink!(params[:permalink])
     @indexes = Hash.new
     @item_category = @categories.find { |category| category.id == @item.category_id }
-    @items = Item.where("status_id < 3 and category_id = #{@item_category.id}")
+    @items = Item.where("status_id < 3 and category_id = #{@item_category.id}", :order => "status_id ASC, upper(title) ASC")
 
     if @items.size == 0
       redirect to('/items')
