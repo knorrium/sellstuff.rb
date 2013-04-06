@@ -10,23 +10,33 @@ Sellstuff.controllers :item do
 
   get :category_items_text, :map => '/items-text/:permalink' do
     @categories = Category.all
-    @items = Item.find_all_by_category_id(Category.find_by_permalink!(params[:permalink]).id, :order => "status_id ASC, upper(title) ASC")
-    session["items"] = Marshal::dump(@items)
-    if @items.size == 0
-      render 'item/empty'
+    @category = Category.find_by_permalink(params[:permalink])
+    if @category.nil?
+      redirect to('/items-text')
     else
-      render 'item/index_text'
+      @items = Item.find_all_by_category_id(@category.id, :order => "status_id ASC, upper(title) ASC")
+      session["items"] = Marshal::dump(@items)
+      if @items.size == 0
+        render 'item/empty'
+      else
+        render 'item/index_text'
+      end
     end
   end
 
   get :category_items, :map => '/items/:permalink' do
     @categories = Category.all
-    @items = Item.find_all_by_category_id(Category.find_by_permalink!(params[:permalink]).id, :order => "status_id ASC, upper(title) ASC")
-    session["items"] = Marshal::dump(@items)
-    if @items.size == 0
-    	render 'item/empty'
+    @category = Category.find_by_permalink(params[:permalink])
+    if @category.nil?
+      redirect to('/items')
     else
-    	render 'item/index'
+      @items = Item.find_all_by_category_id(@category.id, :order => "status_id ASC, upper(title) ASC")
+      session["items"] = Marshal::dump(@items)
+      if @items.size == 0
+        ender 'item/empty'
+      else
+        render 'item/index'
+      end
     end
   end
 
