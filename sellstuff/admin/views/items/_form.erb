@@ -9,9 +9,16 @@
   <span class="description">Ex: a simple text</span>
 </div>
 <div class="group">
+  <%= f.label :current_picture %>
+  <%== image_tag(@item.picture.thumbnail) if @item.picture.thumbnail.length > 0 %>
+</div>
+<div class="group">
   <%= f.label :picture %><%= f.error_message_on :picture %>
   <%= f.file_field :picture, :class => :long %>
-  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :remove_picture %>
+  <%= check_box_tag :remove_picture, :checked => false, :value => "remove_picture" %>
 </div>
 <div class="group">
   <%= f.label :category_id %><%= f.error_message_on :category_id %>

@@ -13,8 +13,8 @@ Admin.controllers :items do
   post :create do
     @item = Item.new(params[:item])
     if @item.save
-      if params[:item][:image] then
-        upload = Upload.create(:file => params[:item][:image], :item_id => @item.id)
+      if params[:item][:picture] then
+        upload = Upload.create(:file => params[:item][:picture], :item_id => @item.id)
         if upload.valid? then
           @item.picture = upload.file
           @item.save
@@ -37,6 +37,10 @@ Admin.controllers :items do
   put :update, :with => :id do
     @item = Item.find(params[:id])
     if @item.update_attributes(params[:item])
+      if params[:remove_picture] then
+        @item.remove_picture!
+        @item.save
+      end
       flash[:notice] = 'Item was successfully updated.'
       redirect url(:items, :edit, :id => @item.id)
     else
