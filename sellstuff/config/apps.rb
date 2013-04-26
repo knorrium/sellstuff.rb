@@ -26,8 +26,8 @@
 # override these settings in the subapps as needed.
 #
 Padrino.configure_apps do
-  # enable :sessions
   set :session_secret, '4161a023f9b4b9ce21523c5fea165fa73d955350f4539353a72e8c9fdecc86a1'
+  set :session_key, 'sellstuff.session'
 end
 
 # Mounts the core application for this project

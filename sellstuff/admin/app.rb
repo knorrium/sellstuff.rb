@@ -24,7 +24,12 @@ class Admin < Padrino::Application
   set :admin_model, 'Account'
   set :login_page, "/admin/sessions/new"
 
-  enable  :sessions
+  use Rack::Session::Pool,
+    :key => settings.session_key,
+    :path => '/admin',
+    :secret => settings.session_secret,
+    :expire_after => 60 * 60 * 24 * 365
+
   disable :store_location
 
   access_control.roles_for :any do |role|

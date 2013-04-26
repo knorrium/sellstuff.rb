@@ -4,8 +4,6 @@ class Sellstuff < Padrino::Application
   register Padrino::Mailer
   register Padrino::Helpers
 
-  # enable :sessions
-  use Rack::Session::Pool
   ##
   # Caching support
   #
@@ -36,6 +34,12 @@ class Sellstuff < Padrino::Application
   # disable :flash                # Disables sinatra-flash (enabled by default if Sinatra::Flash is defined)
   # layout  :my_layout            # Layout can be in views/layouts/foo.ext or views/foo.ext (default :application)
   #
+
+  use Rack::Session::Pool,
+    :key => settings.session_key,
+    :path => '/',
+    :secret => settings.session_secret,
+    :expire_after => 60 * 60 * 24 * 365
 
   ##
   # You can configure for a specified environment like:
