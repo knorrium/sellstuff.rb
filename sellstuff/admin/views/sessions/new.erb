@@ -13,7 +13,7 @@
         <h2>Login Box</h2>
         <div class="content login">
           <div class="flash">
-            <%= [:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join %>
+            <%== [:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join %>
           </div>
           <% form_tag(url(:sessions, :create), :class => 'form login') do %>
             <div class="group wat-cf">
